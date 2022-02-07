@@ -1,4 +1,4 @@
-# android-coding-standards
+# Android Coding Standards
 
 Each member is responsible for 5 rules and 4 recommendations.
 
