@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Counter App Example</string>
+    <string name="increaseBtnTxt">Increase</string>
+    <string name="inputHintText">Enter a number</string>
+    <string name="decreaseBtnTxt">Decrease</string>
+    <string name="counterStartVal">0</string>
+</resources>
