@@ -8,3 +8,5 @@ When writing sample code, ensure you use JavaDoc style comments.
 
 After reviewing all the Android rules/recommendations, you can also include Java ones.
 NOTE: Focus on Rules which are in L2 and L1 level only!
+
+Google Slides: https://docs.google.com/presentation/d/1XBQpYfI-VTkhFLLrOaahuIKROAlOY7m4hB8LmV1IXd4/edit?usp=sharing
