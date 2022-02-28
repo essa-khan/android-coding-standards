@@ -23,7 +23,14 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Rule06Activity extends AppCompatActivity {
-    //Android (Java applied) Rec. 01. Declaration and Initialization - Do not declare more than one variable per declaration.
+    /*
+    Android (Java applied) Rec. 08. Declaration and Initialization - Do not declare more than one variable per declaration.
+    It is recommended to not declare multiple variables of different data types or a mix of initialized and uninitialized 
+    in a single declaration. 
+    
+    The general practice is to declare each variable on its own line with a comment explaining 
+    its role in the code. Failing to do so may cause confusion for the developer and others.
+    */
     private static final int AES_KEY_SIZE = 256;
     private static final int GCM_IV_LENGTH = 12;
     private static final int GCM_TAG_LENGTH = 16;
@@ -36,7 +43,16 @@ public class Rule06Activity extends AppCompatActivity {
 
         // Generate Key
         try {
-            //Rec. 01. Declaration and Initialization - Minimize the scope of variables.
+            /*
+            Android (Java applied) Rec. 08. Declaration and Initialization - Minimize the scope of variables.
+            The scope of a variable is the part of the program where the variable is accessible. Variables 
+            can be defined as having one of three types of scope: class (any variable declared within a class 
+            would be accessible by all methods in that class), method (any variable declared within a method), 
+            and block (any variable declared in loops would not be accessible after the loop concludes). 
+            
+            The practice of scope minimization is to detect variables that may have a larger scope than it is 
+            actually required by the code to execute.
+            */
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             keyGenerator.init(AES_KEY_SIZE);
             secretKey = keyGenerator.generateKey();
@@ -51,13 +67,23 @@ public class Rule06Activity extends AppCompatActivity {
         TextView tvECB = findViewById(R.id.textViewECB);
         TextView tvGCM = findViewById(R.id.textViewGCM);
 
+        
+        /*
+        Android (Java applied) Rule 19. Input Validation and Data Sanitization - Do not log unsanitized user input. String.replace
+        is used to ensure no line endings are present in the user input. User input should be suitably encoded before it is logged. 
+        Doing so will restrict a malicious user from causing confusion in other ways in the logs.
+        */
+        
+        /*
+        Android (Java applied) Rec. 19. Input Validation and Data Sanitization - Understand how escape characters are interpreted 
+        when strings are loaded. The incorrect use of escape characters in string inputs may potentially result in misinterpretation 
+        and incorrect data output. Use double backslash! (\\n, \\b, \\t, \\r)
+        */
         buttonEncrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     EditText plainText = (EditText) findViewById(R.id.editTextPlaintext);
-                    //Rule 00. Input Validation and Data Sanitization - String.replace is used to ensure no line endings are present in the user input.
-                    //Rec. 00. Input Validation and Data Sanitization - Understand how escape characters are interpreted when strings are loaded.
                     byte[] encryptECB = encryptECB(filterString(plainText.getText().toString().replace("\\n", "")).getBytes(), secretKey);
                     //An initialization vector is an arbitrary number used in combination with a secret key as a means to encrypt data.
                     byte[] encryptGCM = encryptGCM(filterString(plainText.getText().toString().replace("\\n", "")).getBytes(), secretKey, IV);
@@ -87,9 +113,14 @@ public class Rule06Activity extends AppCompatActivity {
         return cipher.doFinal(plaintext);
       }
      */
+    /*
+    Android Rule 06. Cryptography - Do not use the Android cryptographic security provider encryption default for AES (ECB).
+    
+    Use AES/GCM/NoPadding. CBC mode eliminates ECB’s issue by carrying information from the encryption or decryption of 
+    one block to the next with the use of an initialization vector (IV).
+    */
     public static byte[] encryptGCM(byte[] plaintext, SecretKey key, byte[] IV) throws Exception
     {
-        //Android (Java applied) Rule 06. Cryptography - NOT using default AES encryption (AES/ECB)
         // Get Cipher Instance
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
@@ -108,7 +139,6 @@ public class Rule06Activity extends AppCompatActivity {
 
     public static byte[] encryptECB(byte[] plainText, SecretKey key) throws Exception
     {
-        //Android (Java applied) Rule 06. Cryptography - Using default AES encryption (AES/ECB)
         // Get Cipher Instance
         Cipher cipher = Cipher.getInstance("AES");
 
@@ -122,14 +152,15 @@ public class Rule06Activity extends AppCompatActivity {
         return cipher.doFinal(plainText);
     }
 
-//    // Android (Java applied) Recommendation 22 MET56-J Do not use Object.equals() to compare cryptographic keys
-//    // NON-COMPLIANT SOLUTION
-//    private static boolean compareKeys(SecretKey key1, SecretKey key2) {
-//        if (key1.equals(key2)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    /*
+    // Android (Java applied) Recommendation 22 MET56-J Do not use Object.equals() to compare cryptographic keys
+    // NON-COMPLIANT SOLUTION
+    private static boolean compareKeys(SecretKey key1, SecretKey key2) {
+        if (key1.equals(key2)) {
+            return true;
+        }
+        return false;
+    }
 
     // COMPLIANT SOLUTION
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -146,7 +177,7 @@ public class Rule06Activity extends AppCompatActivity {
         }
         return false;
     }
-
+    */
     public static String filterString(String str) {
         String tag = Normalizer.normalize(str, Normalizer.Form.NFKC);
 
