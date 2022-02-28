@@ -59,6 +59,7 @@ public class Rule06Activity extends AppCompatActivity {
                     //Rule 00. Input Validation and Data Sanitization - String.replace is used to ensure no line endings are present in the user input.
                     //Rec. 00. Input Validation and Data Sanitization - Understand how escape characters are interpreted when strings are loaded.
                     byte[] encryptECB = encryptECB(filterString(plainText.getText().toString().replace("\\n", "")).getBytes(), secretKey);
+                    //An initialization vector is an arbitrary number used in combination with a secret key as a means to encrypt data.
                     byte[] encryptGCM = encryptGCM(filterString(plainText.getText().toString().replace("\\n", "")).getBytes(), secretKey, IV);
                     String encryptTextECB = new String(encryptECB, "UTF-8");
                     String encryptTextGCM = new String(encryptGCM, "UTF-8");
