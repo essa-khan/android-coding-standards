@@ -71,7 +71,22 @@ public class Rule06Activity extends AppCompatActivity {
             }
         });
     }
-
+    // encryptGCM() and encryptECB() would violate Rec22 MET50-J, MET51-J with the below shape:
+    // (Ambiguous or confusing overloading, and not using overload to differentiate execution)
+    /*public static byte[] encrypt(byte[] plaintext, SecretKey key) throws Exception{
+        Cipher cipher = Cipher.getInstance("AES");
+        SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+        return cipher.doFinal(plainText);
+    }
+      public static byte[] encrypt(byte[] plaintext, SecretKey key, byte[] IV) throws Exception{
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
+        GCMParameterSpec gcmParameterSpec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, IV);
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, gcmParameterSpec);
+        return cipher.doFinal(plaintext);
+      }
+     */
     public static byte[] encryptGCM(byte[] plaintext, SecretKey key, byte[] IV) throws Exception
     {
         // Get Cipher Instance - Rule 06. Cryptography - NOT using default AES encryption (AES/ECB)
