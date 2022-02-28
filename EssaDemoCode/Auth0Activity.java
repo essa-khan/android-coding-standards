@@ -37,7 +37,7 @@ public class Rule07Activity extends AppCompatActivity {
         auth0 = new Auth0(Rule07Activity.this);
     }
 
-    // Rule 07. Miscellaneous - For OAuth, use a secure Android method to deliver access tokens.
+    // Android Rule 07. Miscellaneous - For OAuth, use a secure Android method to deliver access tokens.
     private void login() {
         token.setText("Not logged in");
         WebAuthProvider.login(auth0)
