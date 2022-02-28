@@ -121,6 +121,31 @@ public class Rule06Activity extends AppCompatActivity {
         return cipher.doFinal(plainText);
     }
 
+//    // Android Recommendation 22 MET56-J Do not use Object.equals() to compare cryptographic keys
+//    // NON-COMPLIANT SOLUTION
+//    private static boolean compareKeys(SecretKey key1, SecretKey key2) {
+//        if (key1.equals(key2)) {
+//            return true;
+//        }
+//        return false;
+//    }
+
+    // COMPLIANT SOLUTION
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private static boolean compareKeys(SecretKey key1, SecretKey key2) {
+        if (key1.equals(key2)) {
+            return true;
+        }
+        String encodedKey1 = Base64.getEncoder().encodeToString(key1.getEncoded());
+        String encodedKey2 = Base64.getEncoder().encodeToString(key2.getEncoded());
+
+        // Convert the keys to a string first checks whether the secret keys are equivalent
+        if (encodedKey1.equals(encodedKey2)) {
+            return true;
+        }
+        return false;
+    }
+
     public static String filterString(String str) {
         String tag = Normalizer.normalize(str, Normalizer.Form.NFKC);
 
