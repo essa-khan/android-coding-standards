@@ -39,9 +39,9 @@ public class Rule07Activity extends AppCompatActivity {
 
     /*
     Android Rule 07. Miscellaneous - For OAuth, use a secure Android method to deliver access tokens.
-    OAuth was designed to provide a secure authorization mechanism for applications. It defines a process 
-    for end-users to grant a third-party website the access to their private resources stored on a service 
-    provider. Relying party is the third-party website.
+    OAuth was designed to provide a secure authorization mechanism for applications. To securely access 
+    an online service, users need to authenticate to the service and need to provide proof of their identity.
+    Instead of using the user’s stored credentials, replace with an access token to securely access an application.
     
     Login method to login to the Cryptography App with secure OAuth access token delivery.
     */
