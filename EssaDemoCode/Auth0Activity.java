@@ -37,7 +37,14 @@ public class Rule07Activity extends AppCompatActivity {
         auth0 = new Auth0(Rule07Activity.this);
     }
 
-    // Android Rule 07. Miscellaneous - For OAuth, use a secure Android method to deliver access tokens.
+    /*
+    Android Rule 07. Miscellaneous - For OAuth, use a secure Android method to deliver access tokens.
+    OAuth was designed to provide a secure authorization mechanism for applications. It defines a process 
+    for end-users to grant a third-party website the access to their private resources stored on a service 
+    provider. Relying party is the third-party website.
+    
+    Login method to login to the Cryptography App with secure OAuth access token delivery.
+    */
     private void login() {
         token.setText("Not logged in");
         WebAuthProvider.login(auth0)
