@@ -23,7 +23,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Rule06Activity extends AppCompatActivity {
-    //Rec. 01. Declaration and Initialization - Do not declare more than one variable per declaration.
+    //Android (Java applied) Rec. 01. Declaration and Initialization - Do not declare more than one variable per declaration.
     private static final int AES_KEY_SIZE = 256;
     private static final int GCM_IV_LENGTH = 12;
     private static final int GCM_TAG_LENGTH = 16;
@@ -89,7 +89,8 @@ public class Rule06Activity extends AppCompatActivity {
      */
     public static byte[] encryptGCM(byte[] plaintext, SecretKey key, byte[] IV) throws Exception
     {
-        // Get Cipher Instance - Rule 06. Cryptography - NOT using default AES encryption (AES/ECB)
+        //Android (Java applied) Rule 06. Cryptography - NOT using default AES encryption (AES/ECB)
+        // Get Cipher Instance
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
         // Create SecretKeySpec
@@ -107,7 +108,7 @@ public class Rule06Activity extends AppCompatActivity {
 
     public static byte[] encryptECB(byte[] plainText, SecretKey key) throws Exception
     {
-        // Rule 06. Cryptography - Using default AES encryption (AES/ECB)
+        //Android (Java applied) Rule 06. Cryptography - Using default AES encryption (AES/ECB)
         // Get Cipher Instance
         Cipher cipher = Cipher.getInstance("AES");
 
@@ -121,7 +122,7 @@ public class Rule06Activity extends AppCompatActivity {
         return cipher.doFinal(plainText);
     }
 
-//    // Android Recommendation 22 MET56-J Do not use Object.equals() to compare cryptographic keys
+//    // Android (Java applied) Recommendation 22 MET56-J Do not use Object.equals() to compare cryptographic keys
 //    // NON-COMPLIANT SOLUTION
 //    private static boolean compareKeys(SecretKey key1, SecretKey key2) {
 //        if (key1.equals(key2)) {
