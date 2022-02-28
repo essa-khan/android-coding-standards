@@ -3,7 +3,7 @@
     package="com.example.app">
 
     <!--
-    Rule 07. Miscellaneous - To request user permission for OAuth, identify relying party and
+    Android Rule 07. Miscellaneous - To request user permission for OAuth, identify relying party and
     its permissions scope.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
