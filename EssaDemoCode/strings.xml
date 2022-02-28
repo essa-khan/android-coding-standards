@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">App</string>
 
-    <!-- Java Rec. 00. Input Validation and Data Sanitization - Prevent XPath Injection -->
+    <!-- Android (Java Applied) Rec. 19. Input Validation and Data Sanitization - Prevent XPath Injection -->
     <!--
      Hypothetical situation: You have have xml database containing your apps' client ID,
      domain, user info (credentials), etc. XPath Injection vulnerability occurs when an application
