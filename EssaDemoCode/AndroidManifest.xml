@@ -3,8 +3,14 @@
     package="com.example.app">
 
     <!--
-    Android Rule 07. Miscellaneous - To request user permission for OAuth, identify relying party and
-    its permissions scope.
+    Android Rule 07. Miscellaneous - For OAuth, identify relying party and its user permissions scope.
+
+    OAuth was designed to provide a secure authorization mechanism for websites. It defines a process for 
+    end-users to grant a third-party website the access to their private resources stored on a service provider. 
+    Relying party is the third-party website. When requesting a user permission for information from a service 
+    provider, display what the relying party is and the scope of its permissions.
+    
+    The permissions scope may to read and write files, view users on your domain, or geolocation.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
