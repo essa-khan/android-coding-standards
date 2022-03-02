@@ -42,17 +42,17 @@ public class Rule06Activity extends AppCompatActivity {
         setContentView(R.layout.activity_rule06);
 
         // Generate Key
-        try {
-            /*
-            Android (Java applied) Rec. 08. Declaration and Initialization - Minimize the scope of variables.
-            The scope of a variable is the part of the program where the variable is accessible. Variables 
-            can be defined as having one of three types of scope: class (any variable declared within a class 
-            would be accessible by all methods in that class), method (any variable declared within a method), 
-            and block (any variable declared in loops would not be accessible after the loop concludes). 
+        /*
+          Android (Java applied) Rec. 08. Declaration and Initialization - Minimize the scope of variables.
+          The scope of a variable is the part of the program where the variable is accessible. Variables 
+          can be defined as having one of three types of scope: class (any variable declared within a class 
+          would be accessible by all methods in that class), method (any variable declared within a method), 
+          and block (any variable declared in loops would not be accessible after the loop concludes). 
             
-            The practice of scope minimization is to detect variables that may have a larger scope than it is 
-            actually required by the code to execute.
-            */
+          The practice of scope minimization is to detect variables that may have a larger scope than it is 
+          actually required by the code to execute.
+        */
+        try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             keyGenerator.init(AES_KEY_SIZE);
             secretKey = keyGenerator.generateKey();
