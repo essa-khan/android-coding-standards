@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -140,11 +141,14 @@ public class MainActivity extends AppCompatActivity {
     public void printList(View view){
         Iterator<Input> itr = textList.iterator(); // Iterator for parsing array list
         String output =""; // Output string to build upon to output to user
-        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream = null; // Stream for file output
+        FileInputStream fileInputStream = null; // Stream for file input
 
         try {
             fileOutputStream = openFileOutput(SERIALIZE_FILE, MODE_PRIVATE);
             ObjectOutputStream objectOutputStream =  new ObjectOutputStream(fileOutputStream);
+            fileInputStream = openFileInput(SERIALIZE_FILE);
+            ObjectInputStream ois = new ObjectInputStream(fileInputStream);
             while (itr.hasNext()) { // Iterating through all the Input objects to output their data
                 Input element = itr.next();
                 if (element.origin == Input.USER_NAME) { // If the origin is username, hide it to follow rules of logging
@@ -154,7 +158,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("LIST_OUTPUT", element.text);
                     output = output + " " + element.text;
                 }
-                objectOutputStream.writeObject(element);
+                objectOutputStream.writeObject(element); // Output object for serialization demo
+                try {
+                    Input newInput = (Input)ois.readObject(); // Read serialized object for demo
+                    Log.i("OBJ_OUTPUT", newInput.origin); // Log out the origin
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -169,9 +179,16 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close(); // close the file input stream
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         fileOutput.setText(output); // Set the output text to the TextView
     }
 
 }
-
