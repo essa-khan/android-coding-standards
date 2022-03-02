@@ -50,7 +50,7 @@ public class Rule06Activity extends AppCompatActivity {
           and block (any variable declared in loops would not be accessible after the loop concludes). 
             
           The practice of scope minimization is to detect variables that may have a larger scope than it is 
-          actually required by the code to execute.
+          actually required by the code to execute. In this case, the scope of keyGenerator was minimized.
         */
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
